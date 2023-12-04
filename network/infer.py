@@ -15,7 +15,7 @@ def infer_detection_skeleton(frame, args):
         args["detector_patch"]["box_cache"] = det_bbox
         args["detector_patch"]["frame_num"] = 0
     else:
-        # keep the box_pre for 5 frames to avoid missing
+        # keep the box_pre for 10 frames to avoid missing
         if args["detector_patch"]["frame_num"] < 10:
             if args["detector_patch"]["box_cache"] != None:
                 det_bbox = args["detector_patch"]["box_cache"]

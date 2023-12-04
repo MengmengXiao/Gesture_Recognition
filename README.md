@@ -1,6 +1,7 @@
 # Gesture_Recognition
-Gesture Recognition with deep learning models.
+Gesture Recognition with deep learning models. There are 6 class: throw_up, throw_down, throw_left, throw_right, zoom_in and zoom_out.
 
+<img src='data/show.gif'  width="50%"> 
 
 ### Structure
 ``` bash
@@ -29,10 +30,12 @@ Gesture Recognition with deep learning models.
 python main.py
 ```
 
+### TODO:
+- [] model compression
+- [] more gesture classes
 
-
-## Reference
 ___
+## Reference
 + https://gitcode.net/EricLee/classification
 + https://gitcode.net/EricLee/handpose_x?from_codechina=yes
 + https://github.com/yuxiaochen1103/DG-STA

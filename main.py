@@ -11,11 +11,10 @@ def process_main(frame, queue, args):
 
     box_res, lm_res = infer_detection_skeleton(frame, args)
 
-    str_line = ""
     if len(queue) == args["time_len"]:
         queue.popleft()
         queue.append(lm_res)
-        gesture_result, str_line = args["ges"].infer(queue)
+        gesture_result, _ = args["ges"].infer(queue)
     else:
         queue.append(lm_res)
         gesture_result = 7
@@ -29,10 +28,7 @@ def process_main(frame, queue, args):
     if args["show_landmarks"] and box_res!=None:
         frame = draw_bd_handpose(frame, lm_res)
 
-    str_line = ""
     res_string = mapping[gesture_result]
-    res_string += "  "
-    res_string += str_line
     frame = cv2.putText(frame, res_string, (50,50), cv2.FONT_HERSHEY_SIMPLEX,  
                    1, (255,0,0), 3, cv2.LINE_AA) 
 
@@ -92,7 +88,7 @@ if __name__ == "__main__":
     args["ges"] = model_ges
     args["box_pre"] = None
 
-    # detector patch
+    # detector patch: avoid missing box
     args["detector_patch"] = {"frame_num":0,
                              "box_cache":None}
 

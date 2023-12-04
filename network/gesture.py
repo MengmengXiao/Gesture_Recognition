@@ -14,7 +14,6 @@ class Gesture:
         self.onnx_path = onnx_path
         self.sess = onnxruntime.InferenceSession(self.onnx_path, providers=['CPUExecutionProvider'])
         self.input = np.zeros((1,16,21,2))
-        #self.input = np.zeros((1,8,21,2))
         print("Please set these vars in ./network/gesture.py")
         self.ori_width = 1280 # frame width
         self.ori_height = 720 # frame height
@@ -43,7 +42,7 @@ class Gesture:
         e_x = np.exp(output[0] - np.max(output[0]))
         output = e_x / e_x.sum(axis=0)
 
-        # debug
+        # debug: to show confidence
         o_list = output.tolist()
         o_list = [str(round(n,3)) for n in o_list]
         str_line = ' -- '.join(o_list)
